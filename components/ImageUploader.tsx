@@ -3,7 +3,9 @@ import { CgSpinner } from 'react-icons/cg'
 import useUploads from '../hooks/useUploads'
 import UploadButton from './UploadButton'
 
-const ImageUploader = () => {
+type ImageUploaderProps = { name: string }
+
+const ImageUploader = ({ name }: ImageUploaderProps) => {
   const {
     uploads,
     isUploading,
@@ -14,7 +16,7 @@ const ImageUploader = () => {
   const selectFiles = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       const selectedFiles = Array.from(e.target.files)
-      addUploads(selectedFiles)
+      addUploads(name, selectedFiles)
     }
   }
 
