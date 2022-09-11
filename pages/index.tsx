@@ -53,7 +53,7 @@ const Home: NextPage = () => {
         </div>
       ) : (
         <>
-          <div className="text-gray-400 text-sm text-center my-8">
+          <div className="text-gray-700 text-center my-8">
             Welkom{' '}
             <button onClick={() => setIsEditing(true)} className="underline">
               {name}
