@@ -33,21 +33,23 @@ const Home: NextPage = () => {
       </Head>
       <Header />
       {isEditing ? (
-        <div className="flex flex-col items-start">
+        <div className="flex flex-col items-start pt-8 px-2">
           <label>Wat is je naam?</label>
           <input
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className="rounded border text-l mt-2 mb-6 p-2"
+            className="rounded border text-l mt-2 mb-6 w-full p-2"
           />
-          <button
-            onClick={submitName}
-            className="disabled:opacity-50 disabled:cursor-not-allowed inline-block bg-green enabled:hover:bg-green-dark text-white py-2 px-4 rounded cursor-pointer"
-            disabled={!name}
-          >
-            Volgende <MdEast className="inline text-xl align-text-top ml-1" />
-          </button>
+          <div className="text-right w-full">
+            <button
+              onClick={submitName}
+              className="disabled:opacity-50 disabled:cursor-not-allowed inline-block bg-green enabled:hover:bg-green-dark text-white py-2 px-4 rounded cursor-pointer"
+              disabled={!name}
+            >
+              Volgende <MdEast className="inline text-xl align-text-top ml-1" />
+            </button>
+          </div>
         </div>
       ) : (
         <>
