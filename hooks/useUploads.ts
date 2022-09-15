@@ -14,8 +14,14 @@ type UploadAction = {
   type: 'ADD_UPLOADS',
   payload: File[]
 } | {
-  type: 'UPLOAD_START' | 'UPLOAD_FINISHED',
+  type: 'UPLOAD_START',
   payload: string
+} | {
+  type: 'UPLOAD_FINISHED',
+  payload: {
+    filename: string,
+    url: string
+  }
 }
 
 const uploadReducer = (state: UploadState, action: UploadAction): UploadState => {
@@ -39,10 +45,11 @@ const uploadReducer = (state: UploadState, action: UploadAction): UploadState =>
     })
     case 'UPLOAD_FINISHED':
       return state.map(upload => {
-        if (upload.file.name === action.payload) {
+        if (upload.file.name === action.payload.filename) {
           return {
             ...upload,
-            status: 'done'
+            status: 'done',
+            preview: action.payload.url
           }
         }
         return upload
@@ -72,10 +79,14 @@ const useUploads = () => {
         method: 'POST',
         body: data
       })
+      const result = await response.json()
       if (response.ok) {
         dispatch({
           type: 'UPLOAD_FINISHED',
-          payload: file.name
+          payload: {
+            filename: file.name,
+            url: result.secure_url
+          }
         })
       }
     })
