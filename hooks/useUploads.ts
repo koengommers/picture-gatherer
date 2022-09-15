@@ -91,7 +91,7 @@ const useUploads = () => {
       const data = new FormData()
       data.append('file', file)
       data.append('upload_preset', process.env.NEXT_PUBLIC_UPLOAD_PRESET as string)
-      data.append('folder', name)
+      // data.append('folder', name)
       data.append('context', `author=${name}`)
       const response = await fetch(`https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUD_NAME}/image/upload`, {
         method: 'POST',
